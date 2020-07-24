@@ -169,8 +169,8 @@ class RedisConnHandler(object):
     def is_previous_idle(self):
         return self._idle_count > -1
 
-    def switch_active_server(self, force_master=False):
-        self._active_index = (0 if force_master or self._active_index >= len(self.servers) - 1 else
+    def switch_active_server(self, force_main=False):
+        self._active_index = (0 if force_main or self._active_index >= len(self.servers) - 1 else
                               self._active_index + 1)
         self._parsed_redis = parse_redis_conn(self.servers[self._active_index])
 
@@ -178,8 +178,8 @@ class RedisConnHandler(object):
         self.mark(self.STATUS_OK)  # mark a fresh status OK for the new server
 
         logger.warn(
-            'Switched active Redis server to %s, prev_status=%s, force_master=%s',
-            self.servers[self._active_index], prev_status, force_master)
+            'Switched active Redis server to %s, prev_status=%s, force_main=%s',
+            self.servers[self._active_index], prev_status, force_main)
 
     def get_wait_time(self):
         return min(self.t_wait0 * (2 ** self._retries_count) if self._retries_count >= 0 and not

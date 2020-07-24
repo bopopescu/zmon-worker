@@ -84,5 +84,5 @@ if __name__ == '__main__':
 
     logging.basicConfig(level=logging.INFO)
     NotifyPush.notify(
-        alert={"id": 1048, "changed": True, "is_alert": True, "alert_def": {"name": "Database master connection"},
+        alert={"id": 1048, "changed": True, "is_alert": True, "alert_def": {"name": "Database main connection"},
                "entity": {"id": "test-entity"}}, url=sys.argv[1], key=sys.argv[2])

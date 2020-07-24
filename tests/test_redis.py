@@ -8,7 +8,7 @@ STATS = {
     "blocked_clients": 2,
     "commands_processed_per_sec": 15946.48,
     "connected_clients": 162,
-    "connected_slaves": 0,
+    "connected_subordinates": 0,
     "connections_received_per_sec": 0.5,
     "dbsize": 27351,
     "evicted_keys_per_sec": 0.0,

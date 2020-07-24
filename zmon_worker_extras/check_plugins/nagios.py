@@ -205,9 +205,9 @@ class NagiosWrapper(object):
                     'user': lounge_mysql_user,
                     'password': lounge_mysql_password,
                 }},
-            'check_mysql_slave': {
+            'check_mysql_subordinate': {
                 'args': '-a 3 60 {host} {port} {database} {user} {password}',
-                'parser': self._to_dict_mysql_slave,
+                'parser': self._to_dict_mysql_subordinate,
                 'parameters': {
                     'host': 'localhost',
                     'port': '/var/lib/mysql/mysql.sock',
@@ -507,10 +507,10 @@ class NagiosWrapper(object):
 
     @staticmethod
     @error_wrapped
-    def _to_dict_mysql_slave(output):
+    def _to_dict_mysql_subordinate(output):
         '''try to parse this output:
         Uptime: 38127526  Threads: 2  Questions: 42076974272  Slow queries: 1081545  Opens: 913119  Flush tables: 889
-        Open tables: 438  Queries per second avg: 1103.585 Slave IO: Yes Slave SQL: Yes Seconds Behind Master: 0
+        Open tables: 438  Queries per second avg: 1103.585 Subordinate IO: Yes Subordinate SQL: Yes Seconds Behind Main: 0
         '''
 
         po = dict(re.findall('([a-z][a-z0-9 ]+): ([a-z0-9.()]+)', output, re.IGNORECASE))
